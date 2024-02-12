@@ -1,2 +1,2 @@
 # jupyter
-All my Jupyter Notebooks
+All my Jupyter Notebooks or Python programs
