@@ -14,7 +14,9 @@ CHAPTER_NAME=$2
 curl -s "$URL" | sed -n '/<span class="btext">/{s/.*&nbsp;//;s/<[^>]*>//g;p;}' | sed -E 's/\[[^]]+\]|\([^)]+\)//; s/The Orthodox Jewish Bible.*$//; s/T\.N\..*$//; s/%$//; s/%//g; s/\[|\]|\(|\)//g' > "$CHAPTER_NAME".tmp
 python fixtext.py $CHAPTER_NAME.tmp $CHAPTER_NAME
 rm $CHAPTER_NAME.tmp
-./splitfile.zsh $CHAPTER_NAME
+./splitfile4ways.zsh $CHAPTER_NAME
 python biblereading-singlefile.py $CHAPTER_NAME-part1.tmp
 python biblereading-singlefile.py $CHAPTER_NAME-part2.tmp
-./combinemp3s.zsh $CHAPTER_NAME-part1.mp3 $CHAPTER_NAME-part2.mp3 $CHAPTER_NAME.mp3 
+python biblereading-singlefile.py $CHAPTER_NAME-part3.tmp
+python biblereading-singlefile.py $CHAPTER_NAME-part4.tmp
+./combinemp3s.zsh $CHAPTER_NAME-part1.mp3 $CHAPTER_NAME-part2.mp3 $CHAPTER_NAME-part3.mp3 $CHAPTER_NAME-part4.mp3 $CHAPTER_NAME.mp3 
